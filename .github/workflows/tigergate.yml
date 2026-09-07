@@ -1,4 +1,4 @@
-name: TigerGate Security Scan
+name: TigerGate Security
 
 on:
   pull_request:
@@ -7,12 +7,18 @@ on:
     branches: [main, master]
 
 jobs:
-  security-scan:
+  security:
     runs-on: ubuntu-latest
 
-    env:
-      TIGERGATE_API_KEY: ${{ secrets.TIGERGATE_API_KEY }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    container:
+      image: tigergate/tigergate-cli:latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        component:
+          - { key: web, path: apps/web }
+          - { key: api, path: services/api }
 
     steps:
       - name: Checkout repository
@@ -21,22 +27,11 @@ jobs:
           fetch-depth: 0
 
       - name: TigerGate Security Scan
-        run: |
-          docker run --rm \
-            -v "$GITHUB_WORKSPACE:/src" \
-            -w /src \
-            -e TIGERGATE_API_KEY \
-            -e GITHUB_TOKEN \
-            tigergate/tigergate-cli:latest \
-            scan \
-            --api-url https://api.staging.tigergate.dev/api/ci \
-            --type all \
-            --scan-scope auto \
-            --fail-on critical,high \
-            --max-critical 0 \
-            --max-high 10 \
-            --quality-gate \
-            --exclude "node_modules,dist,vendor" \
-            --sca-ignore-unfixed \
-            --compliance \
-            --upload
+        run: >
+          scan
+          --api-url https://api.staging.tigergate.dev/api/ci
+          --scan-scope diff
+          --component ${{ matrix.component.key }}
+          --component-path ${{ matrix.component.path }}
+        env:
+          TIGERGATE_API_KEY: ${{ secrets.TIGERGATE_API_KEY }}
