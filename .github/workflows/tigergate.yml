@@ -2,12 +2,14 @@ name: TigerGate Security Scan
 
 on:
   pull_request:
-    branches: [main, master]
+    branches:
+      - master
   push:
-    branches: [main, master]
+    branches:
+      - master
 
 jobs:
-  security:
+  security-scan:
     runs-on: ubuntu-latest
 
     container:
@@ -19,18 +21,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Debug TigerGate
-        run: |
-          echo "===== TigerGate ====="
-          command -v tigergate
-          tigergate --version
-          tigergate --help
-          tigergate scan --help
-
       - name: TigerGate Security Scan
         run: |
           tigergate scan \
             --api-url "https://api.staging.tigergate.dev/api/ci" \
-            --scan-scope diff
+            --scan-scope diff \
+            --type all
         env:
           TIGERGATE_API_KEY: ${{ secrets.TIGERGATE_API_KEY }}
