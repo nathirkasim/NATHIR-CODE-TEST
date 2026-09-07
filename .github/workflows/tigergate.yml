@@ -3,17 +3,28 @@ name: TigerGate Security Scan
 on:
   pull_request:
     branches:
+      - main
       - master
   push:
     branches:
+      - main
       - master
 
 jobs:
-  security-scan:
+  security:
     runs-on: ubuntu-latest
-
     container:
       image: tigergate/tigergate-cli:latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        component:
+          # Replace these with paths that exist in your repository
+          - key: web
+            path: apps/web
+          - key: api
+            path: services/api
 
     steps:
       - name: Checkout repository
@@ -26,6 +37,7 @@ jobs:
           tigergate scan \
             --api-url "https://api.staging.tigergate.dev/api/ci" \
             --scan-scope diff \
-            --type all
+            --component "${{ matrix.component.key }}" \
+            --component-path "${{ matrix.component.path }}"
         env:
           TIGERGATE_API_KEY: ${{ secrets.TIGERGATE_API_KEY }}
