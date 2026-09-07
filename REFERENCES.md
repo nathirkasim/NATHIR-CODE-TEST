@@ -133,8 +133,7 @@ mentioned or used!
   using Juice Shop as the tested app:
   [All you need is Zaproxy - Security Testing for WebApps Made Easy](https://www.YouTube.com/watch?v=AQX84p9NhqY)
     * [Example integration as a Docker Compose script](https://github.com/Soluto/webdriverio-zap-proxy)
-    * [Scan results of the example integration](https://jsfiddle.net/62aedL6n/)
-
+  
 ### Blogs & Articles
 
 * Blog post on [Cycubix Docs](https://docs.cycubix.com) by [Cycubix Ltd](https://cycubix.com): [Deploy MultiJuicer on DigitalOcean](https://docs.cycubix.com/multijuicer-on-digitalocean/)
