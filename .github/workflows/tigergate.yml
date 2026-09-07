@@ -13,94 +13,24 @@ jobs:
     container:
       image: tigergate/tigergate-cli:latest
 
-    strategy:
-      fail-fast: false
-      matrix:
-        component:
-          - { key: web, path: apps/web }
-          - { key: api, path: services/api }
-
     steps:
-      - name: Debug - Container Environment
-        run: |
-          echo "===== SYSTEM ====="
-          uname -a
-
-          echo "===== USER ====="
-          whoami
-          id
-
-          echo "===== PATH ====="
-          echo "$PATH"
-
-          echo "===== WORKING DIRECTORY ====="
-          pwd
-          ls -la
-
-          echo "===== ROOT FILESYSTEM ====="
-          ls -la /
-
-      - name: Debug - Find TigerGate CLI
-        run: |
-          echo "===== CHECK scan ====="
-          command -v scan || true
-          which scan || true
-          type scan || true
-
-          echo "===== SEARCH FOR scan ====="
-          find / -type f -name "scan" 2>/dev/null | head -50 || true
-
-          echo "===== POSSIBLE CLI LOCATIONS ====="
-          ls -la /usr/local/bin 2>/dev/null || true
-          ls -la /usr/bin 2>/dev/null || true
-          ls -la /app 2>/dev/null || true
-          ls -la /workspace 2>/dev/null || true
-
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Debug - Repository
+      - name: Debug TigerGate
         run: |
-          echo "===== REPOSITORY ====="
-          pwd
-          ls -la
-
-          echo "===== COMPONENT PATHS ====="
-          echo "Web:"
-          ls -la apps/web 2>&1 || true
-
-          echo "API:"
-          ls -la services/api 2>&1 || true
-
-          echo "===== GIT ====="
-          git --version
-          git status
-          git branch -a
-
-      - name: Debug - TigerGate CLI
-        run: |
-          echo "===== ENVIRONMENT ====="
-          env | sort | sed 's/TIGERGATE_API_KEY=.*/TIGERGATE_API_KEY=***REDACTED***/'
-
-          echo "===== CLI CHECK ====="
-          command -v scan || true
-          scan --help || true
-          scan --version || true
+          echo "===== TigerGate ====="
+          command -v tigergate
+          tigergate --version
+          tigergate --help
+          tigergate scan --help
 
       - name: TigerGate Security Scan
         run: |
-          set -euxo pipefail
-
-          echo "Starting TigerGate scan..."
-          echo "Component: ${{ matrix.component.key }}"
-          echo "Path: ${{ matrix.component.path }}"
-
-          scan \
+          tigergate scan \
             --api-url "https://api.staging.tigergate.dev/api/ci" \
-            --scan-scope diff \
-            --component "${{ matrix.component.key }}" \
-            --component-path "${{ matrix.component.path }}"
+            --scan-scope diff
         env:
           TIGERGATE_API_KEY: ${{ secrets.TIGERGATE_API_KEY }}
