@@ -1,36 +1,18 @@
-name: TigerGate Security
-
-on:
-  pull_request:
-    branches: [main, master]
-  push:
-    branches: [main, master]
-
 jobs:
   security:
     runs-on: ubuntu-latest
-
-    container:
-      image: tigergate/tigergate-cli:latest
-
+    container: { image: tigergate/tigergate-cli:latest }
     strategy:
-      fail-fast: false
+      fail-fast: false                    # one component failing must not cancel the rest
       matrix:
         component:
           - { key: web, path: apps/web }
           - { key: api, path: services/api }
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: TigerGate Security Scan
-        run: >
-          scan
-          --api-url https://api.staging.tigergate.dev/api/ci
-          --scan-scope diff
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }          # full history -> base-branch diff
+      - run: >
+          scan --api-url https://api.staging.tigergate.dev/api/ci --scan-scope diff
           --component ${{ matrix.component.key }}
           --component-path ${{ matrix.component.path }}
         env:
