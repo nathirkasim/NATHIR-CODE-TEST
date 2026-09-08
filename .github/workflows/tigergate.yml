@@ -1,43 +1,34 @@
-name: TigerGate Security Scan
-
+name: TigerGate Security
 on:
-  pull_request:
-    branches:
-      - main
-      - master
   push:
-    branches:
-      - main
-      - master
+    branches: [main]
+  pull_request:
+
+env:
+  TIGERGATE_API_KEY: ${{ secrets.TIGERGATE_API_KEY }}
+  # TIGERGATE_REGION: eu1        # the region that issued the key; omit for us1
 
 jobs:
-  security:
+  pr-scan:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     container:
-      image: tigergate/tigergate-cli:latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        component:
-          # Replace these with paths that exist in your repository
-          - key: web
-            path: apps/web
-          - key: api
-            path: services/api
-
+      image: tigergate/tigergate-cli:latest 
+    permissions:
+      contents: read
+      pull-requests: write   # PR summary comment
+      statuses: write        # commit status
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }   # full history for the diff gate
+      - run: tigergate scan --type all --scan-scope diff --upload
 
-      - name: TigerGate Security Scan
-        run: |
-          tigergate scan \
-            --api-url "https://api.staging.tigergate.dev/api/ci" \
-            --scan-scope diff \
-            --component "${{ matrix.component.key }}" \
-            --component-path "${{ matrix.component.path }}"
-        env:
-          TIGERGATE_API_KEY: ${{ secrets.TIGERGATE_API_KEY }}
+  full-scan:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    container:
+      image: tigergate/tigergate-cli:latest 
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - run: tigergate scan --type all --scan-scope full --upload
