@@ -13,7 +13,6 @@ mentioned or used!
 
 ## Table of contents
 
-* [Awards](#awards--trophy-)
 * [Web Links](#web-links)
   + [Pod- & Webcasts](#pod---webcasts)
   + [Blogs & Articles](#blogs--articles)
