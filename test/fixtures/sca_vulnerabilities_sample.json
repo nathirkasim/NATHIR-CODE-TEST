@@ -1,0 +1,16 @@
+{
+  "name": "sca-vulnerability-sample-fixture",
+  "version": "1.0.0",
+  "description": "Sample dependency manifest demonstrating SCA vulnerabilities for scanning tools",
+  "dependencies": {
+    "jsonwebtoken": "0.4.0",
+    "lodash": "4.17.4",
+    "handlebars": "4.0.11",
+    "marsdb": "0.6.11",
+    "xmldom": "0.1.27",
+    "bson": "1.0.9"
+  },
+  "devDependencies": {
+    "express": "4.16.0"
+  }
+}

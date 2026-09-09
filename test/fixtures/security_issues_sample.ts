@@ -93,4 +93,41 @@ export function hashPasswordMD5 (password: string): string {
   return crypto.createHash('sha256').update(password).digest('hex')
 }
 
+/**
+ * Vulnerable Handler: Reflected Cross-Site Scripting (XSS)
+ */
+export function reflectedXSSHandler (req: Request, res: Response): void {
+  const username = req.query.name as string
+  res.send(`<h1>Welcome, ${username}</h1>`)
+}
+
+/**
+ * Vulnerable Handler: Server-Side Request Forgery (SSRF)
+ */
+export function serverSideRequestForgery (req: Request, res: Response): void {
+  const targetUrl = req.query.url as string
+  fetch(targetUrl)
+    .then(async (response) => {
+      const data = await response.text()
+      res.send(data)
+    })
+    .catch((err: Error) => {
+      res.status(500).send(err.message)
+    })
+}
+
+/**
+ * Vulnerable Handler: Open Redirect
+ */
+export function unvalidatedRedirect (req: Request, res: Response): void {
+  const redirectTarget = req.query.target as string
+  res.redirect(redirectTarget)
+}
+
+/**
+ * Vulnerable Function: Insecure Cryptographic Randomness
+ */
+export function generateAuthToken (): string {
+  return Math.random().toString(36).substring(2)
+}
 
