@@ -1,37 +1,27 @@
 # Terraform IaC Security Test Fixture
-# Remediated infrastructure configurations
+# Demonstrates common infrastructure misconfigurations for IaC scanners
 
 resource "aws_s3_bucket" "vulnerable_public_bucket" {
   bucket = "my-vulnerable-test-bucket-public-read"
 }
 
-# Remediated: S3 Bucket ACL set to private
+# Vulnerable: S3 Bucket ACL set to public-read-write
 resource "aws_s3_bucket_acl" "vulnerable_bucket_acl" {
   bucket = aws_s3_bucket.vulnerable_public_bucket.id
-  acl    = "private"
+  acl    = "public-read-write"
 }
 
-# Remediated: Block all public access to S3 bucket
-resource "aws_s3_bucket_public_access_block" "vulnerable_bucket_public_block" {
-  bucket = aws_s3_bucket.vulnerable_public_bucket.id
-
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
-}
-
-# Remediated: Security group allowing restricted SSH access (10.0.0.0/16)
+# Vulnerable: Security group allowing unrestricted SSH access (0.0.0.0/0)
 resource "aws_security_group" "unrestricted_ssh_sg" {
   name        = "unrestricted-ssh-sg"
-  description = "Security group with restricted SSH ingress"
+  description = "Security group with open SSH ingress"
   vpc_id      = "vpc-12345678"
 
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["10.0.0.0/16"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
@@ -42,11 +32,11 @@ resource "aws_security_group" "unrestricted_ssh_sg" {
   }
 }
 
-# Remediated: Encrypted EBS volume
+# Vulnerable: Unencrypted EBS volume
 resource "aws_ebs_volume" "unencrypted_volume" {
   availability_zone = "us-east-1a"
   size              = 20
-  encrypted         = true
+  encrypted         = false
 
   tags = {
     Name = "unencrypted-ebs-test"
