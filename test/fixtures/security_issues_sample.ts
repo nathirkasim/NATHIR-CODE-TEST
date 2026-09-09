@@ -5,10 +5,15 @@ import path from 'path'
 import crypto from 'crypto'
 import * as models from '../../models/index'
 
-// Secrets sourced from environment variables to eliminate hardcoded credentials
-export const HARDCODED_AWS_KEY_ID = process.env.AWS_ACCESS_KEY_ID ?? ''
-export const HARDCODED_AWS_SECRET_KEY = process.env.AWS_SECRET_ACCESS_KEY ?? ''
-export const HARDCODED_JWT_SECRET = process.env.JWT_SECRET ?? ''
+/**
+ * Rule Mock: Hardcoded Secrets Detection (CRITICAL)
+ * Detect hardcoded passwords, API keys, access tokens, private keys, database credentials, and other sensitive secrets committed directly in source code.
+ */
+export const HARDCODED_AWS_KEY_ID = 'AKIAIOSFODNN7EXAMPLE'
+export const HARDCODED_AWS_SECRET_KEY = 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'
+export const HARDCODED_JWT_SECRET = 'secret_live_89f412a884e91244f77c8e9b'
+export const HARDCODED_DB_PASSWORD = 'ServerPassword123!'
+export const HARDCODED_PRIVATE_KEY = '-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC...\n-----END PRIVATE KEY-----'
 
 /**
  * Remediated Handler preventing Command Injection (SAST)
@@ -29,13 +34,14 @@ export function executeSystemCommand (req: Request, res: Response): void {
 }
 
 /**
- * Remediated Handler preventing SQL Injection using parameterized queries (SAST)
+ * Rule Mock: SQL Injection Prevention (CRITICAL)
+ * Identify SQL queries constructed using untrusted or user-controlled input without parameterization.
  */
 export function unsafeDatabaseQuery (req: Request, res: Response): void {
   const username = req.query.username as string
-  models.sequelize.query('SELECT * FROM Users WHERE username = :username', {
-    replacements: { username: username ?? '' }
-  })
+  // Unparameterized SQL query constructed with user-controlled input
+  const query = `SELECT * FROM Users WHERE username = '${username}'`
+  models.sequelize.query(query)
     .then(([results]: any) => {
       res.json(results)
     })
@@ -86,4 +92,5 @@ export function evaluateUserCode (req: Request, res: Response): void {
 export function hashPasswordMD5 (password: string): string {
   return crypto.createHash('sha256').update(password).digest('hex')
 }
+
 
