@@ -1,0 +1,204 @@
+- generic [ref=f3e9]:
+  - generic [ref=f3e10]:
+    - button [ref=f3e11] [cursor=pointer]
+    - generic [ref=f3e13]:
+      - link [ref=f3e15] [cursor=pointer]:
+        - /url: /
+        - img "TigerGate" [ref=f3e16]
+      - navigation [ref=f3e17]:
+        - link "Dashboard" [ref=f3e19] [cursor=pointer]:
+          - /url: /
+        - button "Issues" [ref=f3e29] [cursor=pointer]
+        - generic [ref=f3e44]:
+          - button "Code Security" [ref=f3e45] [cursor=pointer]
+          - generic [ref=f3e55]:
+            - link "Findings" [ref=f3e56] [cursor=pointer]:
+              - /url: /code-security
+            - link "Repositories" [ref=f3e57] [cursor=pointer]:
+              - /url: /code-security/repositories
+            - link "AI Code Review" [ref=f3e58] [cursor=pointer]:
+              - /url: /code-review
+            - link "CI/CD Pipeline" [ref=f3e59] [cursor=pointer]:
+              - /url: /ci-cd
+            - link "Code Quality" [ref=f3e60] [cursor=pointer]:
+              - /url: /code-quality
+            - link "Rules Catalog" [ref=f3e61] [cursor=pointer]:
+              - /url: /code-security/rules
+            - link "Insights" [ref=f3e62] [cursor=pointer]:
+              - /url: /executive
+            - link "Reports" [ref=f3e63] [cursor=pointer]:
+              - /url: /code-security/reports
+        - link "Container Security" [ref=f3e65] [cursor=pointer]:
+          - /url: /container-security
+        - button "Cloud Security" [ref=f3e74] [cursor=pointer]
+        - button "KSPM" [ref=f3e84] [cursor=pointer]
+        - button "Data Security" [ref=f3e96] [cursor=pointer]
+        - button "Runtime Security" [ref=f3e108] [cursor=pointer]
+        - button "Pentest" [ref=f3e118] [cursor=pointer]
+        - link "Vulnerabilities" [ref=f3e130] [cursor=pointer]:
+          - /url: /vulnerabilities
+        - link "Assets" [ref=f3e144] [cursor=pointer]:
+          - /url: /assets
+        - link "AI Insights" [ref=f3e153] [cursor=pointer]:
+          - /url: /ai-insights
+        - link "Remediation" [ref=f3e161] [cursor=pointer]:
+          - /url: /remediation
+        - button "Integrations" [ref=f3e168] [cursor=pointer]
+        - link "Team" [ref=f3e179] [cursor=pointer]:
+          - /url: /team
+        - link "Organization" [ref=f3e189] [cursor=pointer]:
+          - /url: /organization
+      - generic [ref=f3e200] [cursor=pointer]:
+        - generic [ref=f3e201]: DT
+        - generic [ref=f3e202]:
+          - paragraph [ref=f3e203]: Demo TigerGate
+          - paragraph [ref=f3e204]: demo@tigergate.dev
+          - paragraph [ref=f3e205]:
+            - generic [ref=f3e210]: TigerGate
+  - generic [ref=f3e213]:
+    - generic [ref=f3e214]:
+      - generic [ref=f3e215]:
+        - heading "Code Security" [level=1] [ref=f3e216]
+        - paragraph [ref=f3e217]: Scan your repositories for vulnerabilities, secrets, and security issues
+      - generic [ref=f3e218]:
+        - button "All Time" [ref=f3e220] [cursor=pointer]
+        - button "Reports" [ref=f3e227] [cursor=pointer]
+        - button "Refresh" [ref=f3e232] [cursor=pointer]
+    - navigation "Tabs" [ref=f3e241]:
+      - button "Overview" [ref=f3e242] [cursor=pointer]
+      - button "SCA" [ref=f3e243] [cursor=pointer]
+      - button "SAST" [ref=f3e244] [cursor=pointer]
+      - button "Secrets" [ref=f3e245] [cursor=pointer]
+      - button "IaC" [ref=f3e246] [cursor=pointer]
+      - button "SBOM" [ref=f3e247] [cursor=pointer]
+      - button "CBOM" [ref=f3e248] [cursor=pointer]
+      - button "AI-BOM" [ref=f3e249] [cursor=pointer]
+      - button "Licenses" [ref=f3e250] [cursor=pointer]
+      - button "Auto-Fix" [ref=f3e251] [cursor=pointer]
+      - button "Branches" [ref=f3e252] [cursor=pointer]
+    - generic [ref=f3e254]:
+      - generic [ref=f3e255]:
+        - generic [ref=f3e256]:
+          - button "All Findings" [ref=f3e257] [cursor=pointer]
+          - button "By Repository" [ref=f3e259] [cursor=pointer]
+        - generic [ref=f3e265]:
+          - button "Current" [ref=f3e266] [cursor=pointer]
+          - button "All history" [ref=f3e267] [cursor=pointer]
+      - generic [ref=f3e268]:
+        - generic [ref=f3e269]:
+          - generic [ref=f3e270]: Total Issues
+          - generic [ref=f3e274]: 2,352
+        - generic [ref=f3e275]:
+          - generic [ref=f3e276]: Critical
+          - generic [ref=f3e282]: "207"
+        - generic [ref=f3e283]:
+          - generic [ref=f3e284]: High
+          - generic [ref=f3e288]: 1,002
+        - generic [ref=f3e289]:
+          - generic [ref=f3e290]: Medium
+          - generic [ref=f3e294]: "984"
+        - generic [ref=f3e295]:
+          - generic [ref=f3e296]: Low
+          - generic [ref=f3e307]: "144"
+      - generic [ref=f3e308]:
+        - generic [ref=f3e310]:
+          - generic [ref=f3e311]:
+            - heading "Severity distribution" [level=3] [ref=f3e312]
+            - generic [ref=f3e313]: 2,337 total
+          - img [ref=f3e316]:
+            - generic [ref=f3e318]:
+              - generic [ref=f3e319]: "0"
+              - generic [ref=f3e320]: "200"
+              - generic [ref=f3e321]: "400"
+              - generic [ref=f3e322]: "600"
+              - generic [ref=f3e323]: "800"
+              - generic [ref=f3e324]: 1,000
+              - generic [ref=f3e325]: 1,200
+              - generic [ref=f3e326]: Critical
+              - generic [ref=f3e327]: High
+              - generic [ref=f3e328]: Medium
+              - generic [ref=f3e329]: Low
+        - generic [ref=f3e334]:
+          - generic [ref=f3e335]:
+            - generic [ref=f3e336]: Exploited (CISA KEV)
+            - generic [ref=f3e337]: "0"
+          - generic [ref=f3e338]:
+            - generic [ref=f3e339]: Reachable
+            - generic [ref=f3e340]: "286"
+          - generic [ref=f3e341]:
+            - generic [ref=f3e342]: Fixable
+            - generic [ref=f3e343]: 2,271
+      - textbox "CVE, package, title…" [ref=f3e347]
+      - generic [ref=f3e348]:
+        - generic [ref=f3e350]:
+          - generic [ref=f3e351]: Filters
+          - generic [ref=f3e355]:
+            - generic [ref=f3e356]:
+              - button "Severity" [expanded] [ref=f3e358] [cursor=pointer]
+              - generic [ref=f3e362]
+            - generic [ref=f3e385]:
+              - button "Status" [expanded] [ref=f3e387] [cursor=pointer]
+              - generic [ref=f3e391]
+            - generic [ref=f3e412]:
+              - button "Fix" [expanded] [ref=f3e414] [cursor=pointer]
+              - generic [ref=f3e419]
+            - generic [ref=f3e428]:
+              - button "Repository" [expanded] [ref=f3e430] [cursor=pointer]
+              - generic [ref=f3e434]
+            - generic [ref=f3e463]:
+              - button "Branch" [expanded] [ref=f3e465] [cursor=pointer]
+              - generic [ref=f3e470]
+            - generic [ref=f3e483]:
+              - button "Ecosystem" [expanded] [ref=f3e485] [cursor=pointer]
+              - generic [ref=f3e489]
+            - generic [ref=f3e518]:
+              - generic [ref=f3e519]: Package version
+              - textbox "Filter by Package version" [ref=f3e520]:
+                - /placeholder: e.g. 4.17
+            - generic [ref=f3e521]:
+              - button "Exploited" [expanded] [ref=f3e523] [cursor=pointer]
+              - generic [ref=f3e529] [cursor=pointer]
+            - generic [ref=f3e533]:
+              - button "Reachability" [expanded] [ref=f3e535] [cursor=pointer]
+              - generic [ref=f3e540]
+            - generic [ref=f3e553]:
+              - button "Assignee" [expanded] [ref=f3e555] [cursor=pointer]
+              - generic [ref=f3e560]
+        - generic [ref=f3e574]:
+          - generic [ref=f3e576]:
+            - heading "All SCA Vulnerabilities" [level=3] [ref=f3e577]
+            - button "Columns" [ref=f3e579] [cursor=pointer]
+          - table [ref=f3e583]:
+            - rowgroup [ref=f3e584]:
+              - row "Priority Drag to resize column Sev Drag to resize column Exploit Drag to resize column Reachable Drag to resize column Package Drag to resize column Fix Ver Drag to resize column Repository Drag to resize column CVE / ID Drag to resize column Status Drag to resize column Date Drag to resize column" [ref=f3e585]
+            - rowgroup [ref=f3e639]:
+              - row "98 critical CRITICAL - Reachable npm jsonwebtoken @0.4.0 4.2.2 nathirkasim/NATHIR-CODE-TEST master CVE-2015-9235 Open 1h ago" [ref=f3e640] [cursor=pointer]
+              - row "98 critical CRITICAL - Reachable npm jsonwebtoken @0.1.0 4.2.2 nathirkasim/NATHIR-CODE-TEST master CVE-2015-9235 Open 1h ago" [ref=f3e689] [cursor=pointer]
+              - row "98 critical CRITICAL - Reachable PyPI numpy @1.16.0 1.16.3 madhavan-atatus/acme-dashboard main CVE-2019-6446 Open 15d ago" [ref=f3e738] [cursor=pointer]
+              - row "98 critical CRITICAL - Reachable PyPI SQLAlchemy @1.2.10 1.3.0b3 madhavan-atatus/acme-dashboard main CVE-2019-7164 Open 15d ago" [ref=f3e787] [cursor=pointer]
+              - row "98 critical CRITICAL - Reachable PyPI Django @2.2.3 2.2.28, 3.2.13, 4.0.4 madhavan-atatus/acme-dashboard main CVE-2022-28347 Open 15d ago" [ref=f3e836] [cursor=pointer]
+              - row "98 critical CRITICAL - Reachable PyPI Django @2.2.3 2.2.28, 3.2.13, 4.0.4 madhavan-atatus/acme-dashboard main CVE-2022-28346 Open 15d ago" [ref=f3e885] [cursor=pointer]
+              - row "98 critical CRITICAL - Reachable PyPI Django @2.2.3 1.11.28, 2.2.10, 3.0.3 madhavan-atatus/acme-dashboard main CVE-2020-7471 Open 15d ago" [ref=f3e934] [cursor=pointer]
+              - row "98 critical CRITICAL - Reachable PyPI Django @2.2.3 1.11.27, 2.2.9, 3.0.1 madhavan-atatus/acme-dashboard main CVE-2019-19844 Open 15d ago" [ref=f3e983] [cursor=pointer]
+              - row "98 critical CRITICAL - Reachable PyPI Django @2.2.3 1.11.23, 2.1.11, 2.2.4 madhavan-atatus/acme-dashboard main CVE-2019-14234 Open 15d ago" [ref=f3e1032] [cursor=pointer]
+              - row "98 critical CRITICAL - Reachable npm xmldom @0.1.27 - madhavan-atatus/acme-dashboard main CVE-2022-39353 Open 15d ago" [ref=f3e1081] [cursor=pointer]
+              - row "98 critical CRITICAL - Reachable npm handlebars @4.0.11 4.7.9 madhavan-atatus/acme-dashboard main CVE-2026-33937 Open 15d ago" [ref=f3e1130] [cursor=pointer]
+              - row "98 critical CRITICAL - Reachable npm handlebars @4.0.11 4.7.7 madhavan-atatus/acme-dashboard main CVE-2021-23383 Open 15d ago" [ref=f3e1179] [cursor=pointer]
+              - row "98 critical CRITICAL - Reachable npm handlebars @4.0.11 4.7.7 madhavan-atatus/acme-dashboard main CVE-2021-23369 Open 15d ago" [ref=f3e1228] [cursor=pointer]
+              - row "98 critical CRITICAL - Reachable npm handlebars @4.0.11 4.3.0, 3.0.8 madhavan-atatus/acme-dashboard main CVE-2019-19919 Open 15d ago" [ref=f3e1277] [cursor=pointer]
+              - row "98 critical CRITICAL - Reachable npm bson @1.0.9 1.1.4 madhavan-atatus/acme-dashboard main CVE-2020-7610 Open 15d ago" [ref=f3e1326] [cursor=pointer]
+              - row "98 critical CRITICAL - Reachable PyPI Django @2.2.3 5.2.8, 5.1.14, 4.2.26 madhavan-atatus/acme-dashboard main CVE-2025-64459 Open 15d ago" [ref=f3e1375] [cursor=pointer]
+              - row "98 critical CRITICAL - Reachable npm lodash @4.17.4 4.17.12 madhavan-atatus/acme-dashboard main CVE-2019-10744 Open 15d ago" [ref=f3e1424] [cursor=pointer]
+              - row "98 critical CRITICAL - Reachable PyPI transformers @4.30.0 4.36.0 madhavan-atatus/sast-issue-test main CVE-2023-6730 Open 7d ago" [ref=f3e1473] [cursor=pointer]
+              - row "97 critical CRITICAL - Reachable PyPI SQLAlchemy @1.2.10 1.2.19 madhavan-atatus/acme-dashboard main CVE-2019-7548 Open 15d ago" [ref=f3e1522] [cursor=pointer]
+              - row "94 critical CRITICAL - Reachable npm marsdb @0.6.11 - nathirkasim/NATHIR-CODE-TEST master GHSA-5mrr-rgp6-x4gr Open 1h ago" [ref=f3e1571] [cursor=pointer]
+          - generic [ref=f3e1620]:
+            - generic [ref=f3e1621]:
+              - generic [ref=f3e1622]: Showing 1–20 of 2,352
+              - generic [ref=f3e1623]
+            - generic [ref=f3e1627]:
+              - button "First page" [disabled] [ref=f3e1628]
+              - button "Previous page" [disabled] [ref=f3e1632]
+              - generic [ref=f3e1635]: Page 1 of 118
+              - button "Next page" [ref=f3e1636] [cursor=pointer]
+              - button "Last page" [ref=f3e1639] [cursor=pointer]

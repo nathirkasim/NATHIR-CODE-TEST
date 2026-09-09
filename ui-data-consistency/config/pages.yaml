@@ -1,0 +1,43 @@
+login:
+  path: /auth/login
+  selectors:
+    username: 'input[type="email"]'
+    password: 'input[type="password"]'
+    submit: 'button:has-text("Sign in")'
+
+pages:
+  - name: Overview
+    url: /code-security/overview
+    metrics:
+      - name: SAST
+        selector: '[data-testid="sast-count"]'
+        context: {repository: "", branch: "", organization: "", severity: "", status: "", date_range: ""}
+      - name: SCA
+        selector: '[data-testid="sca-count"]'
+      - name: Secrets
+        selector: '[data-testid="secrets-count"]'
+      - name: IaC
+        selector: '[data-testid="iac-count"]'
+
+  - name: Repository Findings
+    url: /code-security/repositories
+    metrics:
+      - name: SAST
+        selector: '[data-testid="sast-count"]'
+      - name: SCA
+        selector: '[data-testid="sca-count"]'
+      - name: Secrets
+        selector: '[data-testid="secrets-count"]'
+      - name: IaC
+        selector: '[data-testid="iac-count"]'
+
+comparisons:
+  - name: Dashboard count vs detailed findings count
+    left: {page: Overview, metric: SAST}
+    right: {page: Repository Findings, metric: SAST}
+  - name: Filter count vs displayed result count
+    left: {page: Overview, metric: SAST}
+    right: {page: Repository Findings, metric: SAST}
+  - name: Summary card vs chart total
+    left: {page: Overview, metric: SAST}
+    right: {page: Overview, metric: SAST, selector: '[data-testid="sast-chart-total"]'}
