@@ -1,0 +1,10 @@
+__pycache__/
+.pytest_cache/
+.venv/
+.env
+reports/api/*.json
+reports/bug_reports/*.json
+reports/storage_state.json
+reports/*.html
+reports/*.json
+screenshots/*.png
